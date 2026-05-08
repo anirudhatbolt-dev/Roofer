@@ -1,0 +1,101 @@
+"use client";
+
+import { useEffect, useState, useMemo, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import Lenis from "@studio-freight/lenis";
+import { AnimatePresence } from "framer-motion";
+import Preloader from "@/components/Preloader";
+import RoofScroll from "@/components/RoofScroll";
+import type { CompanyConfig } from "@/components/RoofScroll";
+
+const configs: Record<string, CompanyConfig> = {
+  csroofing: {
+    name: "CS Roofing & Gutters",
+    city: "Charlotte",
+    state: "NC",
+    phone: "(704) 555-0123",
+    logo: "/logos/cs-roofing.png",
+    color: "#e85d04",
+  },
+  kingdomroofing: {
+    name: "Kingdom Roofing",
+    city: "Charlotte",
+    state: "NC",
+    phone: "(704) 555-0456",
+    logo: "/logos/kingdom-roofing.png",
+    color: "#e85d04",
+  },
+};
+
+const defaultConfig: CompanyConfig = {
+  name: "Your Roofing Company",
+  city: "Your City",
+  state: "XX",
+  phone: "(555) 000-0000",
+  logo: "/logos/default-roof-logo.png",
+  color: "#e85d04",
+};
+
+function HomeInner() {
+  const [isLoading, setIsLoading] = useState(true);
+  const searchParams = useSearchParams();
+  const companyKey = searchParams.get("company") ?? "";
+  const companyConfig = configs[companyKey] || defaultConfig;
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    if (isLoading) {
+      lenis.stop();
+    } else {
+      lenis.start();
+    }
+
+    return () => {
+      lenis.destroy();
+    };
+  }, [isLoading]);
+
+  const images = useMemo(() => {
+    const arr: string[] = [];
+    for (let i = 1; i <= 120; i++) {
+      const num = i.toString().padStart(3, "0");
+      arr.push(`/sequence-1/ezgif-frame-${num}.jpg`);
+    }
+    return arr;
+  }, []);
+
+  return (
+    <main className="bg-[#0a0a0a] min-h-screen">
+      <AnimatePresence>
+        {isLoading && (
+          <Preloader images={images} onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
+      <RoofScroll images={images} companyConfig={companyConfig} />
+    </main>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={null}>
+      <HomeInner />
+    </Suspense>
+  );
+}
