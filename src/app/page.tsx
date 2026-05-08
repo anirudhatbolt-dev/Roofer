@@ -71,14 +71,24 @@ function HomeInner() {
     };
   }, [isLoading]);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  
   const images = useMemo(() => {
+    const folder = isMobile ? "roofingmobile" : "sequence-1";
     const arr: string[] = [];
     for (let i = 1; i <= 120; i++) {
       const num = i.toString().padStart(3, "0");
-      arr.push(`/sequence-1/ezgif-frame-${num}.jpg`);
+      arr.push(`/${folder}/ezgif-frame-${num}.jpg`);
     }
     return arr;
-  }, []);
+  }, [isMobile]);
 
   return (
     <main className="bg-[#0a0a0a] min-h-screen">

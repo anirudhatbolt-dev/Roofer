@@ -359,15 +359,15 @@ export default function RoofScroll({ images, companyConfig }: RoofScrollProps) {
         const canvasRatio = rect.width / rect.height;
         let drawWidth, drawHeight, x, y;
         if (canvasRatio > imgRatio) {
-          drawHeight = rect.height;
-          drawWidth = img.width * (rect.height / img.height);
-          x = (rect.width - drawWidth) / 2;
-          y = 0;
-        } else {
           drawWidth = rect.width;
           drawHeight = img.height * (rect.width / img.width);
           x = 0;
           y = (rect.height - drawHeight) / 2;
+        } else {
+          drawHeight = rect.height;
+          drawWidth = img.width * (rect.height / img.height);
+          x = (rect.width - drawWidth) / 2;
+          y = 0;
         }
         ctx.drawImage(img, x, y, drawWidth, drawHeight);
       }
@@ -395,7 +395,7 @@ export default function RoofScroll({ images, companyConfig }: RoofScrollProps) {
 
       <div ref={containerRef} className="relative h-[500vh] bg-[#0a0a0a]">
         <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
-          <canvas ref={canvasRef} className="absolute inset-0 h-full w-full pointer-events-none" />
+        <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
 
           {/* Floating top-right button */}
           <motion.div
@@ -413,8 +413,7 @@ export default function RoofScroll({ images, companyConfig }: RoofScrollProps) {
           <div className="absolute inset-0 flex flex-col pointer-events-none">
 
             {/* Text 1 — visible on load */}
-            
-<motion.div
+            <motion.div
   style={{ opacity: mounted ? text1Opacity : 1, y: mounted ? text1Y : 0, pointerEvents: "none", display: mounted ? text1Display : "flex" }}
   className="absolute inset-0 flex flex-col items-center justify-center text-center px-4"
 >
@@ -424,7 +423,7 @@ export default function RoofScroll({ images, companyConfig }: RoofScrollProps) {
               <h2 className="text-5xl md:text-7xl font-[800] tracking-wide text-white uppercase drop-shadow-xl">
                 Your roof is telling you something.
               </h2>
-              <p className="mt-6 text-xl md:text-2xl text-white/90 font-light drop-shadow-lg max-w-2xl">
+              <p className="mt-6 text-lg md:text-2xl text-white font-[800] drop-shadow-lg max-w-2xl">
                 Most damage goes unnoticed until it&apos;s too late.
               </p>
             </motion.div>
@@ -434,10 +433,10 @@ export default function RoofScroll({ images, companyConfig }: RoofScrollProps) {
               style={{ opacity: text2Opacity, y: text2Y }}
               className="absolute inset-0 flex flex-col items-start justify-center px-8 md:px-24"
             >
-              <h2 className="text-5xl md:text-7xl font-[800] tracking-wide text-white uppercase drop-shadow-xl max-w-4xl">
+              <h2 className="text-4xl md:text-6xl font-[800] tracking-wide text-white uppercase drop-shadow-xl max-w-4xl">
                 We show up before the storm wins.
               </h2>
-              <p className="mt-6 text-xl md:text-2xl text-white/90 font-light drop-shadow-lg">
+              <p className="mt-6 text-lg md:text-2xl text-white font-[800] drop-shadow-lg">
                 Fast response. Expert installation. Guaranteed.
               </p>
             </motion.div>
@@ -447,10 +446,10 @@ export default function RoofScroll({ images, companyConfig }: RoofScrollProps) {
               style={{ opacity: text3Opacity, y: text3Y }}
               className="absolute inset-0 flex flex-col items-end justify-center px-8 md:px-24 text-right"
             >
-              <h2 className="text-5xl md:text-7xl font-[800] tracking-wide text-white uppercase drop-shadow-xl max-w-4xl">
+              <h2 className="text-4xl md:text-6xl font-[800] tracking-wide text-white uppercase drop-shadow-xl max-w-4xl">
                 Built to last. Built to protect.
               </h2>
-              <p className="mt-6 text-xl md:text-2xl text-white/90 font-light drop-shadow-lg">
+              <p className="mt-6 text-lg md:text-2xl text-white font-[800] drop-shadow-lg">
                 Premium materials. Lifetime craftsmanship.
               </p>
             </motion.div>
@@ -460,24 +459,24 @@ export default function RoofScroll({ images, companyConfig }: RoofScrollProps) {
               style={{ opacity: text4Opacity, y: text4Y }}
               className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-auto"
             >
-              <h2 className="text-5xl md:text-7xl font-[800] tracking-wide text-white uppercase drop-shadow-xl">
+              <h2 className="text-3xl md:text-5xl font-[800] tracking-wide text-white uppercase drop-shadow-xl max-w-2xl">
                 What will your new roof cost?
               </h2>
-              <p className="mt-4 text-xl text-white/70 font-light">
+              <p className="mt-4 text-lg md:text-xl text-white font-[800]">
                 Free estimate. No obligation. Results in 60 seconds.
               </p>
               <button
                 onClick={() => setQuoteOpen(true)}
-                className="mt-12 px-10 py-5 bg-white text-[#0a0a0a] text-lg font-[800] tracking-wider uppercase hover:bg-gray-200 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.6)] hover:scale-105 cursor-pointer"
+                className="mt-8 px-10 py-5 bg-white text-[#0a0a0a] text-lg font-[800] tracking-wider uppercase hover:bg-gray-200 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.6)] hover:scale-105 cursor-pointer"
               >
                 Get My Instant Estimate →
               </button>
-              <p className="mt-6 text-white text-sm tracking-widest">
-  {companyConfig.phone}
-</p>
-<p className="mt-3 text-white text-xs tracking-widest">
-  © {companyConfig.name} · Licensed &amp; Insured · {companyConfig.city}, {companyConfig.state}
-</p>
+              <p className="mt-6 text-white text-sm tracking-widest font-[800]">
+                {companyConfig.phone}
+              </p>
+              <p className="mt-3 text-white text-xs tracking-widest">
+                © {companyConfig.name} · Licensed &amp; Insured · {companyConfig.city}, {companyConfig.state}
+              </p>
             </motion.div>
 
           </div>
