@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Premium Roofing",
+  title: "Roofers",
   description: "High-end scrollytelling landing page for a roofing company.",
 };
 
