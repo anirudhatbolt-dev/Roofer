@@ -33,6 +33,14 @@ const configs: Record<string, CompanyConfig> = {
   logo: "/logos/1776-contractors.png",
   color: "#e85d04",
 },
+  "kingdomroofing": {
+  name: "Kingdom Roofing & Construction LLC",
+  city: "Charlotte",
+  state: "NC",
+  phone: "(704) 868-1396",
+  logo: "/logos/kingdom-roofing.png",
+  color: "#e85d04",
+},
 };
 
 const defaultConfig: CompanyConfig = {
