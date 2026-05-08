@@ -417,16 +417,31 @@ export default function RoofScroll({ images, companyConfig }: RoofScrollProps) {
   style={{ opacity: mounted ? text1Opacity : 1, y: mounted ? text1Y : 0, pointerEvents: "none", display: mounted ? text1Display : "flex" }}
   className="absolute inset-0 flex flex-col items-center justify-center text-center px-4"
 >
-<p className="mb-4 text-sm font-[800] tracking-[0.3em] text-white uppercase">
-                {companyConfig.name} — {companyConfig.city}&apos;s Trusted Roofing Experts
-              </p>
-              <h2 className="text-5xl md:text-7xl font-[800] tracking-wide text-white uppercase drop-shadow-xl">
-                Your roof is telling you something.
-              </h2>
-              <p className="mt-6 text-lg md:text-2xl text-white font-[800] drop-shadow-lg max-w-2xl">
-                Most damage goes unnoticed until it&apos;s too late.
-              </p>
-            </motion.div>
+  <p className="mb-4 text-sm font-[800] tracking-[0.3em] text-white uppercase">
+    {companyConfig.name} — {companyConfig.city}&apos;s Trusted Roofing Experts
+  </p>
+  <h2 className="text-5xl md:text-7xl font-[800] tracking-wide text-white uppercase drop-shadow-xl">
+    Your roof is telling you something.
+  </h2>
+  <p className="mt-6 text-lg md:text-2xl text-white font-[800] drop-shadow-lg max-w-2xl">
+    Most damage goes unnoticed until it&apos;s too late.
+  </p>
+  <motion.div
+    className="mt-10 flex flex-col items-center gap-2"
+    animate={{ y: [0, 8, 0] }}
+    transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+  >
+    <p className="text-white text-xs tracking-[0.3em] uppercase font-[600]">Scroll</p>
+    <svg width="20" height="28" viewBox="0 0 20 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="1" y="1" width="18" height="26" rx="9" stroke="white" strokeOpacity="0.4" strokeWidth="1.5"/>
+      <motion.rect
+        x="8.5" y="5" width="3" height="6" rx="1.5" fill="white"
+        animate={{ y: [0, 8, 0], opacity: [1, 0, 1] }}
+        transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+      />
+    </svg>
+  </motion.div>
+</motion.div>
 
             {/* Text 2 */}
             <motion.div
@@ -467,7 +482,8 @@ export default function RoofScroll({ images, companyConfig }: RoofScrollProps) {
               </p>
               <button
                 onClick={() => setQuoteOpen(true)}
-                className="mt-8 px-10 py-5 bg-white text-[#0a0a0a] text-lg font-[800] tracking-wider uppercase hover:bg-gray-200 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.6)] hover:scale-105 cursor-pointer"
+                // className="mt-8 px-10 py-5 bg-white text-[#0a0a0a] text-lg font-[800] tracking-wider uppercase hover:bg-gray-200 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.6)] hover:scale-105 cursor-pointer"
+              className="mt-8 px-6 py-4 md:px-10 md:py-5 bg-white text-[#0a0a0a] text-sm md:text-lg font-[800] tracking-wider uppercase hover:bg-gray-200 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.6)] hover:scale-105 cursor-pointer whitespace-nowrap"
               >
                 Get My Instant Estimate →
               </button>
