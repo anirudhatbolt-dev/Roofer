@@ -17,30 +17,22 @@ const configs: Record<string, CompanyConfig> = {
     logo: "/logos/cs-roofing.png",
     color: "#e85d04",
   },
+  "1776contractors": {
+    name: "1776 Contractors Inc",
+    city: "Orchard City",
+    state: "CO",
+    phone: "(970) 778-1776",
+    logo: "/logos/1776-contractors.png",
+    color: "#e85d04",
+  },
   kingdomroofing: {
-    name: "Kingdom Roofing",
+    name: "Kingdom Roofing & Construction LLC",
     city: "Charlotte",
     state: "NC",
-    phone: "(704) 555-0456",
+    phone: "(704) 868-1396",
     logo: "/logos/kingdom-roofing.png",
     color: "#e85d04",
   },
-  "1776contractors": {
-  name: "1776 Contractors Inc",
-  city: "Orchard City",
-  state: "CO",
-  phone: "(970) 778-1776",
-  logo: "/logos/1776-contractors.png",
-  color: "#e85d04",
-},
-  "kingdomroofing": {
-  name: "Kingdom Roofing & Construction LLC",
-  city: "Charlotte",
-  state: "NC",
-  phone: "(704) 868-1396",
-  logo: "/logos/kingdom-roofing.png",
-  color: "#e85d04",
-},
 };
 
 const defaultConfig: CompanyConfig = {
